@@ -4,4 +4,8 @@ export class Assignment {
   rendu!:boolean;
   id?:number;
   _id?:string;
+  auteur!:string;
+  matiere!:string;
+  note!:number;
+  remarques?:string;
 }
