@@ -24,6 +24,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { AuthGuard } from './shared/auth.guard';
 import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -67,7 +69,9 @@ const routes:Routes = [
     MatNativeDateModule, MatListModule, MatCardModule,
     MatCheckboxModule, MatSlideToggleModule, HttpClientModule,
     RouterModule.forRoot(routes),
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

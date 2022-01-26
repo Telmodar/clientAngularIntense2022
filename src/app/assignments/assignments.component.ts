@@ -34,6 +34,9 @@ export class AssignmentsComponent implements OnInit {
     this.assignmentService.getAssignmentsPagine(this.page, this.limit).subscribe((data) => {
       // le tableau des assignments est maintenant ici....
       this.assignments = data.docs;
+      this.assignments.forEach(assignemnt => {
+        assignemnt.dateDeRendu = new Date(assignemnt.dateDeRendu);
+      });
       this.page = data.page;
       this.limit = data.limit;
       this.totalDocs = data.totalDocs;
@@ -76,7 +79,7 @@ export class AssignmentsComponent implements OnInit {
   
   displayedColumns: string[] = ['dateDeRendu', 'nom', 'rendu', 'nav'];
   //dataSource = new MatTableDataSource(this.assignments);
-  dataSource = this.assignments.slice();
+  //dataSource = this.assignments.slice();
   //dataSource = this.assignments;
 
   //@ViewChild(MatSort) sort!: MatSort;
@@ -88,15 +91,15 @@ export class AssignmentsComponent implements OnInit {
   sortData(sort: Sort) {
     const data = this.assignments.slice();
     if (!sort.active || sort.direction === '') {
-      this.dataSource = data;
+      this.assignments = data;
       return;
     }
 
-    this.dataSource = data.sort((a, b) => {
+    this.assignments = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'dateDeRendu':
-          return compare(a.dateDeRendu, b.dateDeRendu, isAsc);
+          return compare(a.dateDeRendu.getTime(), b.dateDeRendu.getTime(), isAsc);
         case 'nom':
           return compare(a.nom, b.nom, isAsc);
         default:
@@ -119,4 +122,3 @@ function compare(a: number | string | Date, b: number | string | Date, isAsc: bo
     }
     return 0;
   }*/
-
