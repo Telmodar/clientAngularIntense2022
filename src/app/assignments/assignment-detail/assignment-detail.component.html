@@ -3,14 +3,40 @@
   <div class="assigment-card-header">
     <mat-card-header> 
       <div mat-card-avatar> </div>
+      <!--Nom de l'élève-->
       <mat-card-title>Christophe Santamaria</mat-card-title>
-      <mat-card-subtitle>Formateur en Comptabilité</mat-card-subtitle>
+      <!-- Classe de l'évève -->
+      <mat-card-subtitle>Elève en M2 MIAGE INTENSE </mat-card-subtitle>
     </mat-card-header>
+
+    
+    <mat-card-header>
+      
+      <div>
+      <!-- Si la note est = truc alors afficher-->
+      <mat-card-title *ngIf="assignmentTransmis.note" >Note : {{assignmentTransmis.note}} /20 </mat-card-title>
+
+      <!-- Si non rendu et date dépasée alors 0/20 -->
+      <mat-card-title *ngIf="!assignmentTransmis.note && assignmentTransmis.dateDeRendu" > Rendu en retard 0/20 </mat-card-title>
+
+      <mat-card-title *ngIf="!assignmentTransmis.note" > Pas encore noté </mat-card-title>
+
+      <!-- Sinon afficher pas encore noté-->
+    </div>
+    </mat-card-header>
+
+    
+    <mat-divider></mat-divider>
+
   
     <mat-card-header> 
       <div mat-card-sm-image > </div>
-      <mat-card-title>Comptabilité générale</mat-card-title>
+      <mat-card-title>{{assignmentTransmis.matiere}}</mat-card-title>
+      <!---->
+      <mat-card-subtitle>par Michel Buffa</mat-card-subtitle>
+      <!--Coef de la matiére-->
       <mat-card-subtitle>Coefficient 3</mat-card-subtitle>
+
     </mat-card-header>
 
 
@@ -24,7 +50,7 @@
     <mat-card-content>
      
     <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
-    <mat-card-subtitle>{{assignmentTransmis.dateDeRendu | date}}</mat-card-subtitle>
+    <mat-card-subtitle>Date de rendu : {{assignmentTransmis.dateDeRendu | date}}</mat-card-subtitle>
 
     <nav>
       <!-- la route "relative" marche aussi car on est déjà dans /assignment/id
