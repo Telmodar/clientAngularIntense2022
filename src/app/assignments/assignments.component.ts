@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { Sort, MatSortModule } from '@angular/material/sort';
 import { AssignmentsService } from '../shared/assignments.service';
 import { Assignment } from './assignment.model';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 @Component({
@@ -14,6 +15,8 @@ import { MatTableDataSource } from '@angular/material/table';
 export class AssignmentsComponent implements OnInit {
   ajoutActive = false;
   assignments: Assignment[] = [];
+  afficherProjetsRendus=true;
+  afficherProjetsNonRendus=true;
   // pour la pagination
   page: number = 1;
   limit: number = 10;
@@ -24,11 +27,47 @@ export class AssignmentsComponent implements OnInit {
   hasNextPage: boolean = false;
   nextPage: number = 0;
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   constructor(private assignmentService: AssignmentsService) {}
 
   ngOnInit(): void {
     this.getAssignments();
   }
+
+  ngAfterViewInit() {
+    //https://stackoverflow.com/a/47594193
+    this.paginator._intl.firstPageLabel="Première page";
+    this.paginator._intl.lastPageLabel="Dernière page";
+    this.paginator._intl.nextPageLabel="Page suivante";
+    this.paginator._intl.previousPageLabel="Page précedente";
+    this.paginator._intl.itemsPerPageLabel="Nombre d'assignments par page :";
+    //-----------------------------------
+    this.paginator.lastPage = () => {
+      this.dernierePage();
+      this.paginator.pageIndex=this.page-1;
+    };
+    this.paginator.firstPage = () => {
+      this.premierePage();
+      this.paginator.pageIndex=this.page-1;
+    };
+    this.paginator.nextPage = () => {
+      this.pageSuivante();
+      this.paginator.pageIndex=this.page-1;
+    };
+    this.paginator.previousPage = () => {
+      this.pagePrecedente();
+      this.paginator.pageIndex=this.page-1;
+    };
+   }
+
+   onChangePaginator(e:any) {
+    if(this.paginator.pageSize!=this.limit) {
+      this.limit=this.paginator.pageSize;
+      this.changeLimit();
+    }
+   }
+
 
   getAssignments() {
     this.assignmentService.getAssignmentsPagine(this.page, this.limit).subscribe((data) => {

@@ -8,36 +8,18 @@
   </div>
 
   <h2>Liste des assignments :</h2>
-  Nb assignments par page :
-  <input type=range min=2 max=100 value=10 [(ngModel)]="limit" (change)="getAssignments()"> {{limit}}
-<div class="pagination">
-  <button mat-stroked-button color="primary"
-          (click)="premierePage()"
-          [disabled]="page===1"
-  >Première page</button>
-  &nbsp;
-  <button mat-stroked-button color="primary"
-          (click)="pagePrecedente()"
-          [disabled]="!hasPrevPage"
-  >Page précédente</button>
-  &nbsp;
-  <button mat-stroked-button color="primary"
-          (click)="pageSuivante()"
-          [disabled]="!hasNextPage"
-          >Page suivante</button>
-  &nbsp;
-  <button mat-stroked-button color="primary"
-          (click)="dernierePage()"
-          [disabled]="page===totalPages"
-  >Dernière page</button>
+<div>
+  <mat-paginator 
+  [length]=totalDocs
+  [pageSize]="10"
+  itemsPerPageLabel="Nb assignments par page"
+  showFirstLastButtons 
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  (page)="onChangePaginator($event)"
+  aria-label="Select page">
+  </mat-paginator>
 </div>
 <div>
-  <!--<mat-paginator 
-  [length]="100"
-  [pageSize]="10"
-  [pageSizeOptions]="[5, 10, 25, 100]"
-  aria-label="Select page">
-  </mat-paginator>-->
   <table mat-table [dataSource]="assignments" class="mat-elevation-z8" matSort (matSortChange)="sortData($event)">
   <!--<table mat-table [dataSource]="assignments" class="mat-elevation-z8" matSort (matSortChange)="sortData($event)">-->
     <ng-container matColumnDef="dateDeRendu">
