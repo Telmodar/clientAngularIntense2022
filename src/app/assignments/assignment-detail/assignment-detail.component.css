@@ -3,3 +3,48 @@
   justify-content: space-between;
   align-items: flex-end;
 }
+
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+
+.mat-card {
+  max-width: 80%;
+  margin: auto;
+}
+
+.mat-card-actions {
+  display:flex;
+}
+
+.mat-card-avatar {
+  background-size:cover;
+  background-image: url('https://cdnb.artstation.com/p/assets/images/images/009/836/467/medium/maria-bo-schatzis-stream-profilpicture.jpg?1521139318>');
+  
+}
+
+.mat-card-sm-image {
+  background-size:cover;
+  background-image: url('https://img-0.journaldunet.com/soeDbPw55PQzmsx3RjxuMgCQVXU=/1500x/smart/2a1a7784bea34b23861c68336f865c3e/ccmcms-jdn/10827590.jpg');
+   
+}
+
+.mat-card-image {
+  background-size:cover;
+  width : 100px;
+}
+
+
+.assigment-card-header {
+  display:flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
