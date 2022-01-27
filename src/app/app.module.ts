@@ -26,7 +26,8 @@ import { AuthGuard } from './shared/auth.guard';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-
+import {MatRadioModule} from '@angular/material/radio';
+import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
 
 
 const routes:Routes = [
@@ -71,7 +72,9 @@ const routes:Routes = [
     RouterModule.forRoot(routes),
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatRadioModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

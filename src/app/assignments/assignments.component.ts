@@ -15,8 +15,9 @@ import { MatPaginator } from '@angular/material/paginator';
 export class AssignmentsComponent implements OnInit {
   ajoutActive = false;
   assignments: Assignment[] = [];
-  afficherProjetsRendus=true;
-  afficherProjetsNonRendus=true;
+  afficherRendus=true;
+  afficherNonRendus=true;
+  textFilter="";
   // pour la pagination
   page: number = 1;
   limit: number = 10;
@@ -68,14 +69,53 @@ export class AssignmentsComponent implements OnInit {
     }
    }
 
+   affichageRendusEtNonRendus(rendus: boolean) {
+     if (rendus) {
+      console.log("filtre rendus modifié");
+      this.afficherRendus=!this.afficherRendus;
+     } else {
+      console.log("filtre non rendus modifié");
+      this.afficherNonRendus=!this.afficherNonRendus;
+     }
+     this.getAssignments();
+    }
+
+    changeFilter(e: Event) {
+      this.getAssignments();
+    }
 
   getAssignments() {
     this.assignmentService.getAssignmentsPagine(this.page, this.limit).subscribe((data) => {
       // le tableau des assignments est maintenant ici....
-      this.assignments = data.docs;
-      this.assignments.forEach(assignemnt => {
-        assignemnt.dateDeRendu = new Date(assignemnt.dateDeRendu);
-      });
+      if(this.afficherRendus && this.afficherNonRendus) {
+        if(this.textFilter!="") {
+          this.assignments=[];
+          data.docs.forEach((a: Assignment) => {
+            if(a.nom.toString().toUpperCase().includes(this.textFilter.toUpperCase())) {
+              this.assignments.push(a);
+            }
+          });
+        } else {
+          this.assignments = data.docs;
+          this.assignments.forEach(assignemnt => {
+            assignemnt.dateDeRendu = new Date(assignemnt.dateDeRendu);
+          });
+        }
+      } else if(this.afficherRendus) {
+        this.assignments=[];
+        data.docs.forEach((a: Assignment) => {
+          if(a.rendu && a.nom.toString().toUpperCase().includes(this.textFilter.toUpperCase())) {
+            this.assignments.push(a);
+          }
+        });
+      } else {
+        this.assignments=[];
+        data.docs.forEach((a: Assignment) => {
+          if(!a.rendu && a.nom.toString().toUpperCase().includes(this.textFilter.toUpperCase())) {
+            this.assignments.push(a);
+          }
+        });
+      }
       this.page = data.page;
       this.limit = data.limit;
       this.totalDocs = data.totalDocs;

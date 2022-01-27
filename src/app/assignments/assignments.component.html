@@ -9,18 +9,30 @@
 
   <h2>Liste des assignments :</h2>
 <div>
+  <mat-checkbox [checked]=afficherRendus (change)="affichageRendusEtNonRendus(true)">Afficher les rendus</mat-checkbox>
+  <br>
+  <mat-checkbox [checked]=afficherNonRendus (change)="affichageRendusEtNonRendus(false)">Afficher les non rendus</mat-checkbox>
+  <br>
+  <mat-form-field>
+    <mat-label>Rechercher</mat-label>
+    <input matInput [(ngModel)]="textFilter" (ngModelChange)="changeFilter($event)">  
+    <button *ngIf='textFilter!=""' matSuffix mat-icon-button aria-label="Clear" (click)="textFilter='';changeFilter($event)">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
   <mat-paginator 
   [length]=totalDocs
   [pageSize]="10"
   itemsPerPageLabel="Nb assignments par page"
   showFirstLastButtons 
-  [pageSizeOptions]="[5, 10, 25, 100]"
+  [pageSizeOptions]="[5, 10, 25, 100, 300, 1000]"
   (page)="onChangePaginator($event)"
   aria-label="Select page">
   </mat-paginator>
 </div>
+
 <div>
-  <table mat-table [dataSource]="assignments" class="mat-elevation-z8" matSort (matSortChange)="sortData($event)">
+  <table mat-table [dataSource]="assignments" class="mat-elevation-z8z-depth-1 fixed-table-header" matSort (matSortChange)="sortData($event)">
   <!--<table mat-table [dataSource]="assignments" class="mat-elevation-z8" matSort (matSortChange)="sortData($event)">-->
     <ng-container matColumnDef="dateDeRendu">
       <th mat-header-cell *matHeaderCellDef mat-sort-header="dateDeRendu"> Date de rendu </th>
