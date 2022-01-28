@@ -12,7 +12,17 @@ export class EditAssignmentComponent implements OnInit {
   assignment?:Assignment;
   // champs du formulaire
   nomAssignment?:string;
+  descriptionAssignment?:string;
   dateDeRendu?:Date;
+  noteAssignment?:number;
+  coefAssignment?:number; 
+
+  //Sauv des données par default
+  previousName?:string;
+  previousDate?:Date;
+  previousDescription?:string;
+  previsousNote?:number;
+  previousCoef?:number;
 
   constructor(private route:ActivatedRoute,
               private router:Router,
@@ -41,6 +51,19 @@ export class EditAssignmentComponent implements OnInit {
       // pré-remplit le formulaire dès l'affichage
       this.nomAssignment = assignment?.nom;
       this.dateDeRendu = assignment?.dateDeRendu;
+
+      // Sauvegardes les précedence données 
+      this.previousName = assignment?.nom;
+      this.previousDate = assignment?.dateDeRendu;
+      //TODO A changer par description 
+      this.previousDescription = assignment?.remarques;
+      this.previsousNote = assignment?.note;
+      //TODO A changer par coef 
+      this.previousCoef = assignment?.note;
+
+    
+
+
     })
   }
 
@@ -63,6 +86,24 @@ export class EditAssignmentComponent implements OnInit {
         this.router.navigate(['/home']);
       });
 
-
   }
- }
+
+  resetForm(){
+    this.nomAssignment = this.previousName; 
+    this.descriptionAssignment = '';
+    this.noteAssignment = 0;
+    this.coefAssignment = 0;
+  }
+
+  NumbersOnly(event: any)  {
+    var number = (event.which) ? event.which : event.keyCode;
+    
+    if (number != 46 && number > 31
+      && (number < 48 || number > 57)) {
+      event.preventDefault();
+      return false;
+    }
+    return true;
+  }
+}
+ 

@@ -1,10 +1,15 @@
 <div class="container" *ngIf="assignment">
   <h2>Edition de l'assignment {{assignment.nom}}</h2>
   <form ngForm class="form">
+
+    <!-- NOM DU DEVOIR -->
     <mat-form-field>
-      <input matInput placeholder="Edition du nom"
+      <input matInput placeholder="Edition du nom du devoir"
       [(ngModel)]="nomAssignment" name="assignment-name">
     </mat-form-field>
+
+
+    <!-- DATE DE RENDU -->
     <mat-form-field>
       <input matInput [matDatepicker]="picker"
              placeholder="Edition de la date"
@@ -13,9 +18,53 @@
       </mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+
+    <!-- COEF DU RENDU -->
+    <mat-form-field>
+      <mat-label>Edition du coéfficient</mat-label>
+      <input matInput 
+      (keypress)="NumbersOnly($event)"
+      placeholder="Ex. 4"
+      [(ngModel)]="coefAssignment" name="assignment-coef"
+      >
+    </mat-form-field>
+
+    <!-- DESCRIPTION DU RENDU -->
+
+    <mat-form-field>
+      <mat-label>Edition de la description</mat-label>
+      <input matInput 
+      placeholder="Ex. Analyse des chiffres et ajouts de tous les chiffrages"
+      [(ngModel)]="descriptionAssignment" name="assignment-description"
+      >
+    </mat-form-field>
+
+
+    <!-- NOTE DU RENDU -->
+
+    <!-- TODO : Vérification si identifier en tant que prof -->
+    <mat-form-field>
+      <mat-label>Note sur /20</mat-label>
+      <input matInput 
+      (keypress)="NumbersOnly($event)"
+      min="0" 
+      max="20" 
+      placeholder="Ex. 13.5"
+      [(ngModel)]="noteAssignment" name="assignment-note"
+      >
+    </mat-form-field>
+
     <button mat-raised-button color="primary"
            (click)="onSaveAssignment()">
       Sauver
     </button>
+
+    <button mat-raised-button color="warn"
+    (click)="resetForm()">
+    Réinitialiser le formulaire
+  </button>
+    
+
+
   </form>
 </div>
