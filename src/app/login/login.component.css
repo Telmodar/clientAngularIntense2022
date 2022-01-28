@@ -1,0 +1,16 @@
+.container {
+    text-align: center;
+}
+
+.mat-stroked-button {
+    text-align-last: left;
+}
+
+.mat-raised-button {
+    text-align-last: right;
+}
+
+#loginButton {
+    color: white;
+    background-color: rgb(57, 35, 255);
+}

@@ -27,7 +27,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatRadioModule} from '@angular/material/radio';
-import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { LoginComponent } from './login/login.component'; 
 
 
 const routes:Routes = [
@@ -42,6 +43,10 @@ const routes:Routes = [
   {
     path:"add",
     component: AddAssignmentComponent
+  },
+  {
+    path:"login",
+    component: LoginComponent
   },
   {
     path:"assignment/:id",
@@ -60,7 +65,8 @@ const routes:Routes = [
     RenduDirective,
     AssignmentDetailComponent,
     AddAssignmentComponent,
-    EditAssignmentComponent
+    EditAssignmentComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

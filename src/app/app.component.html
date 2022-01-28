@@ -6,13 +6,34 @@
   </nav>
 </h1>
 
-<mat-slide-toggle (click)="login()">Login</mat-slide-toggle>
+<button *ngIf="authService.loggedIn" 
+        mat-raised-button 
+        color="warn"
+        (click)="logout()"
+>
+        Logout
+</button>
+<button *ngIf="!authService.loggedIn"
+        mat-raised-button
+        color="primary"
+        routerLink="/login"
+>
+        Login
+</button>
+
 <br>
-<button mat-raised-button
+<button mat-raised-button 
+        color="accent" 
+        (click)="oldLoginFunction()"
+>
+        Login (old button)
+</button>
+<br>
+<!--<button mat-raised-button
         color="primary"
         (click)="remplirBD()"
 >
         PEUPLER BD
-</button>
+</button>-->
 
 <router-outlet></router-outlet>
