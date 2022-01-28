@@ -8,4 +8,5 @@ export class Assignment {
   matiere!:string;
   note!:number;
   remarques?:string;
+  coefficient!:number;
 }

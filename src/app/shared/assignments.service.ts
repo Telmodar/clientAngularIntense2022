@@ -78,6 +78,7 @@ export class AssignmentsService {
       a.matiere = assignment.matiere;
       a.note = assignment.note;
       a.remarques = assignment.remarques;
+      a.coefficient = assignment.coefficient;
 
       this.addAssignment(a)
       .subscribe(reponse => {
