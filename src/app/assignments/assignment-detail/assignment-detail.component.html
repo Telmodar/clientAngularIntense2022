@@ -2,11 +2,12 @@
 
   <div class="assigment-card-header">
     <mat-card-header> 
-      <div mat-card-avatar> </div>
+      <div mat-card-avatar style="background-image: url('{{photoResponsable}}');"> </div>
       <!--Nom de l'élève-->
-      <mat-card-title>Michel Buffa</mat-card-title>
+      <mat-card-title>{{responsableMatiere}}</mat-card-title>
+
       <!-- Classe de l'évève -->
-      <mat-card-subtitle>Technologies Web </mat-card-subtitle>
+      <mat-card-subtitle>{{titreResponsable}} </mat-card-subtitle>
     </mat-card-header>
 
     
@@ -26,29 +27,26 @@
     </mat-card-header>
 
     
-    <mat-divider></mat-divider>
+    
 
   
     <mat-card-header> 
-      <div mat-card-sm-image > </div>
+      <div mat-card-sm-image style="background-image: url('{{imageMatiere}}');"> </div>
       <mat-card-title>{{assignmentTransmis.matiere}}</mat-card-title>
-      <!---->
-      <mat-card-subtitle>par Michel Buffa</mat-card-subtitle>
       <!--Coef de la matiére-->
-      <mat-card-subtitle>Coefficient 3</mat-card-subtitle>
-
+      <mat-card-subtitle>Coefficient {{assignmentTransmis.coefficient}}</mat-card-subtitle>
     </mat-card-header>
-
 
   </div>
 
+  <mat-divider></mat-divider>
   <div class="bottom">
     <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()">
       Rendu
     </mat-checkbox>
 
     <mat-card-content>
-     
+      <pre></pre>
     <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
     <mat-card-subtitle>Date de rendu : {{assignmentTransmis.dateDeRendu | date}}</mat-card-subtitle>
 
@@ -62,12 +60,21 @@
           <a [routerLink]="['/assignment', assignmentTransmis.id, 'edit']">
           -->
 
-          <h2>Description</h2>
 
-          <p>Ceci est la description de la carte</p>
+          <div class="description"> 
+            <div><h2>Description</h2>
+              <p>L'assignement {{assignmentTransmis.nom}} doit être rendu au plus tard le
+                 {{assignmentTransmis.dateDeRendu | date: 'dd/M/yyyy' }} à {{responsableMatiere}}. 
+                 Le devoir est à déposer sur la boite LMS du cours de {{assignmentTransmis.matiere}}.</p>
+            </div> 
+
+            <div>
+              <h3 *ngIf="!assignmentTransmis.rendu" >Status : A rendre</h3> 
+              <h3 *ngIf="assignmentTransmis.rendu" >Status : Rendu</h3>
+              <img class="imageRendu"  src="{{imageRendu}}"> </div>
 
   
-  
+          </div> 
 
           
           
@@ -88,6 +95,16 @@
   </div>
 </mat-card>
 
+
+<h3>Créateur : </h3>
+<mat-card-header>
+<div mat-card-sm-image> </div>
+<mat-card-title>{{assignmentTransmis?.auteur}}</mat-card-title>
+</mat-card-header>
+<!--TODO Mettre la variable de l'utilisateur-->
+
+
+
 <h2>Remarques</h2>
 <!-- Ajouter le nombre de remarques -->
 
@@ -95,13 +112,8 @@
 <!--Ng for pour les remarques -->
 <mat-card *ngIf="assignmentTransmis">
 
-  <!--Objet de la remarque -->
-  <h3> Le rendu était en retard de 3 jours </h3> 
   <!--Texte de la remarque --> 
   <p>{{assignmentTransmis.remarques}}</p>
-
-  <p>26/01/2022 à 15:30 () </p>
-
 
 </mat-card>
 
@@ -109,17 +121,13 @@
 <!-- Ajouter l'envoie du commentaire -->
 <mat-card *ngIf="assignmentTransmis">
 <form class="example-form">
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Objet</mat-label>
-    <input matInput placeholder="Ex. Manque un fichier">
-  </mat-form-field>
 
   <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Commentaire</mat-label>
+    <mat-label>Remarque</mat-label>
     <textarea matInput placeholder="Ex. Le ficher du compte de resultat n'est pas présent... "></textarea>
   </mat-form-field>
 </form>
 
-<button mat-raised-button color="primary">Envoyer le commentaire</button>
+<button mat-raised-button color="primary">Envoyer la nouvelle remarque</button>
 
 </mat-card>
