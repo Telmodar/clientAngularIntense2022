@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { Assignment } from '../assignment.model';
 
+
 @Component({
   selector: 'app-edit-assignment',
   templateUrl: './edit-assignment.component.html',
@@ -12,6 +13,8 @@ export class EditAssignmentComponent implements OnInit {
   assignment?:Assignment;
   // champs du formulaire
   nomAssignment?:string;
+  matiereAssignment?:string; 
+  authorAssignment?:string;
   descriptionAssignment?:string;
   dateDeRendu?:Date;
   noteAssignment?:number;
@@ -51,6 +54,8 @@ export class EditAssignmentComponent implements OnInit {
       // pré-remplit le formulaire dès l'affichage
       this.nomAssignment = assignment?.nom;
       this.dateDeRendu = assignment?.dateDeRendu;
+      this.authorAssignment = assignment?.auteur; 
+      this.matiereAssignment= assignment?.matiere; 
 
       // Sauvegardes les précedence données 
       this.previousName = assignment?.nom;
@@ -93,6 +98,12 @@ export class EditAssignmentComponent implements OnInit {
     this.descriptionAssignment = '';
     this.noteAssignment = 0;
     this.coefAssignment = 0;
+  }
+
+  getTeacher(): void {
+    
+    console.log('Matiere ' + this.matiereAssignment + ' séléctionée')
+
   }
 
   NumbersOnly(event: any)  {

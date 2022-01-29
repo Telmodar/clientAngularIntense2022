@@ -28,6 +28,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
+import {MatSelectModule} from '@angular/material/select';
+
 
 
 const routes:Routes = [
@@ -74,7 +76,8 @@ const routes:Routes = [
     MatPaginatorModule,
     MatSortModule,
     MatRadioModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
