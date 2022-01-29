@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
@@ -29,7 +29,7 @@ import { MatSortModule } from '@angular/material/sort';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
 import {MatSelectModule} from '@angular/material/select';
-
+import { LoginComponent } from './login/login.component'; 
 
 
 const routes:Routes = [
@@ -44,6 +44,10 @@ const routes:Routes = [
   {
     path:"add",
     component: AddAssignmentComponent
+  },
+  {
+    path:"login",
+    component: LoginComponent
   },
   {
     path:"assignment/:id",
@@ -62,7 +66,8 @@ const routes:Routes = [
     RenduDirective,
     AssignmentDetailComponent,
     AddAssignmentComponent,
-    EditAssignmentComponent
+    EditAssignmentComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
