@@ -16,6 +16,7 @@ export class AppComponent {
     this.loggedInUIState = this.authService.loggedIn;
   }
 
+  slideDarkMode = false
   loginButtonColor = "primary";
 
   title = 'Application de gestion des assignments';
@@ -24,6 +25,10 @@ export class AppComponent {
     private router: Router,
     private assignmentsService: AssignmentsService
   ) {}
+
+  toggleDarkMode(): void {
+    document.body.classList.toggle('dark-mode');
+  }
 
   oldLoginFunction() {
     if (!this.authService.loggedIn) {

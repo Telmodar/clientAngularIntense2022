@@ -6,7 +6,19 @@
   </nav>
 </h1>
 
-<button *ngIf="authService.loggedIn" 
+<mat-toolbar>
+        <div class="topBar">
+          
+          <a routerLink="/add">
+              <button 
+              mat-flat-button 
+              color="accent"
+              >
+              Ajouter Assignment
+            </button>
+
+        </a>
+            <button *ngIf="authService.loggedIn" 
         mat-raised-button 
         color="warn"
         (click)="logout()"
@@ -20,15 +32,27 @@
 >
         Login
 </button>
+    
 
-<br>
 <button mat-raised-button 
         color="accent" 
         (click)="oldLoginFunction()"
 >
         Login (old button)
 </button>
-<br>
+
+
+<mat-slide-toggle (click)="toggleDarkMode()">Dark Mode</mat-slide-toggle>
+    
+        </div>
+    
+      </mat-toolbar>
+
+
+
+
+
+
 <!--<button mat-raised-button
         color="primary"
         (click)="remplirBD()"

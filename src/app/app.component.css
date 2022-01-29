@@ -12,6 +12,7 @@ section {
 .example-button-row {
   display: table-cell;
   width: 490px;
+  
 }
 
 .example-button-row .mat-button-base {
@@ -33,3 +34,9 @@ section {
 nav {
   text-align: center;
 }
+
+
+.topBar{
+ 
+}
+

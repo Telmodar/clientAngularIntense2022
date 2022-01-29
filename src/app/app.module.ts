@@ -30,6 +30,8 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
 import {MatSelectModule} from '@angular/material/select';
 import { LoginComponent } from './login/login.component'; 
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 
 
 const routes:Routes = [
@@ -83,6 +85,7 @@ const routes:Routes = [
     MatRadioModule,
     MatButtonToggleModule,
     MatSelectModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

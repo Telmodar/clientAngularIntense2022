@@ -15,10 +15,15 @@
  .container {
    display:flex;
    flex-direction: column;
+   color: var(--text-color);
+
  }
 
  .ajouterBtn {
-   align-self: flex-end;
+  align-self: flex-end;
+  justify-content: space-between;
+  display:flex;
+
  }
 
  .pagination {
@@ -37,3 +42,4 @@ thead tr {
   width: 100%;
   table-layout: fixed;
 }
+
