@@ -7,28 +7,22 @@
     <input matInput [(ngModel)]="nomAssignment" name="nom" placeholder="Nom du devoir">
   </mat-form-field>
 
+  <!-- to do (si on a le temps) prendre directement l'username de compte connecté -->
+  <mat-form-field>
+    <input matInput [(ngModel)]="authorAssignment" name="auteur" placeholder="Indiquez votre nom">
+  </mat-form-field>
+
  <!-- MATIERE -->
 
- <mat-form-field appearance="fill"
- [(ngModel)]="matiereAssignment" name="assignment-matiere"
- >
-   <mat-label>Modification de la matière</mat-label>
-   <mat-select>
-     <mat-option (click)="getTeacher()" value="devWeb">Dev Web</mat-option>
-     <mat-option (click)="getTeacher()" value="GestionDeProjet">Gestion de projet</mat-option>
-     <mat-option (click)="getTeacher()" value="CreationDentreprise">Création d'entreprise</mat-option>
-     <mat-option (click)="getTeacher()" value="Management">Management du numérique</mat-option>
-     <mat-option (click)="getTeacher()" value="BD">BD pour le Big Data</mat-option>
-   </mat-select>
- </mat-form-field>
-
-
- <!-- NOM DU DEVOIR -->
  <mat-form-field appearance="fill">
-   <mat-label>Nom de l'assignment</mat-label>
-   <input matInput placeholder="Nom du devoir"
-   [(ngModel)]="nomAssignment" name="assignment-name"
-   >
+   <mat-label>Choix de la matière</mat-label>
+   <mat-select>
+    <mat-option (click)="setMatiere(0)" value="devWeb">Dev Web</mat-option>
+    <mat-option (click)="setMatiere(1)" value="gestionDeProjet">Gestion de projet</mat-option>
+    <mat-option (click)="setMatiere(2)" value="creationEntreprise">Création d'entreprise</mat-option>
+    <mat-option (click)="setMatiere(3)" value="managementDuNumérique">Management du numérique</mat-option>
+    <mat-option (click)="setMatiere(4)" value="BDpourleBigData">BD pour le Big Data</mat-option>
+   </mat-select>
  </mat-form-field>
 
 
@@ -55,20 +49,18 @@
  </mat-form-field>
 
  <!-- DESCRIPTION DU RENDU -->
-
  <mat-form-field appearance="fill">
    <mat-label>Description</mat-label>
    <input matInput 
    placeholder="Ex. Analyse des chiffres et ajouts de tous les chiffrages"
-   [(ngModel)]="descriptionAssignment" name="assignment-description"
+   [(ngModel)]="remarquesAssignment" name="assignment-description"
    >
  </mat-form-field>
 
 
  <!-- NOTE DU RENDU -->
-
  <!-- TODO : Vérification si identifier en tant que prof -->
- <mat-form-field appearance="fill">
+ <!--<mat-form-field appearance="fill">
    <mat-label>Note sur /20</mat-label>
    <input matInput 
    (keypress)="NumbersOnly($event)"
@@ -77,7 +69,7 @@
    placeholder="Ex. 13.5"
    [(ngModel)]="noteAssignment" name="assignment-note"
    >
- </mat-form-field>
+ </mat-form-field>-->
 
  <button 
  mat-stroked-button 

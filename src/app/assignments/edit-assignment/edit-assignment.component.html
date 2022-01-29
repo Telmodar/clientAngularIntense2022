@@ -3,28 +3,25 @@
   <form ngForm class="form">
 
 
-    <!-- MATIERE -->
-
-    <mat-form-field appearance="fill"
-    [(ngModel)]="matiereAssignment" name="assignment-matiere"
-    >
-      <mat-label>Modification de la matière</mat-label>
-      <mat-select>
-        <mat-option (click)="getTeacher()" value="devWeb">Dev Web</mat-option>
-        <mat-option (click)="getTeacher()" value="GestionDeProjet">Gestion de projet</mat-option>
-        <mat-option (click)="getTeacher()" value="CreationDentreprise">Création d'entreprise</mat-option>
-        <mat-option (click)="getTeacher()" value="Management">Management du numérique</mat-option>
-        <mat-option (click)="getTeacher()" value="BD">BD pour le Big Data</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-
     <!-- NOM DU DEVOIR -->
     <mat-form-field appearance="fill">
       <mat-label>Nom de l'assignment</mat-label>
       <input matInput placeholder="Nom du devoir"
       [(ngModel)]="nomAssignment" name="assignment-name"
       >
+    </mat-form-field>
+
+
+    <!-- MATIERE -->
+    <mat-form-field appearance="fill">
+      <mat-label>Modification de la matière (actuellement : {{assignment.matiere}})</mat-label>
+      <mat-select>
+        <mat-option (click)="setMatiere(0)" value="devWeb">Dev Web</mat-option>
+        <mat-option (click)="setMatiere(1)" value="gestionDeProjet">Gestion de projet</mat-option>
+        <mat-option (click)="setMatiere(2)" value="creationEntreprise">Création d'entreprise</mat-option>
+        <mat-option (click)="setMatiere(3)" value="managementDuNumérique">Management du numérique</mat-option>
+        <mat-option (click)="setMatiere(4)" value="BDpourleBigData">BD pour le Big Data</mat-option>
+      </mat-select>
     </mat-form-field>
 
 
@@ -40,6 +37,7 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
+
     <!-- COEF DU RENDU -->
     <mat-form-field appearance="fill">
       <mat-label>Coéfficient</mat-label>
@@ -50,8 +48,8 @@
       >
     </mat-form-field>
 
-    <!-- DESCRIPTION DU RENDU -->
 
+    <!-- DESCRIPTION DU RENDU -->
     <mat-form-field appearance="fill">
       <mat-label>Description</mat-label>
       <input matInput 
@@ -70,10 +68,14 @@
       (keypress)="NumbersOnly($event)"
       min="0" 
       max="20" 
-      placeholder="Ex. 13.5"
+      placeholder="Ex. 14"
       [(ngModel)]="noteAssignment" name="assignment-note"
       >
     </mat-form-field>
+
+    <mat-checkbox *ngIf="noteAssignment!=''" (click)="changeRendu()" [checked]="assignment.rendu">Rendu</mat-checkbox>
+
+    <mat-checkbox *ngIf="noteAssignment==''" disabled="true" [checked]="assignment.rendu">Rendu</mat-checkbox>
 
     <button mat-raised-button color="primary"
            (click)="onSaveAssignment()">

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
 import { Assignment } from '../assignment.model';
@@ -14,18 +15,23 @@ export class EditAssignmentComponent implements OnInit {
   // champs du formulaire
   nomAssignment?:string;
   matiereAssignment?:string; 
-  authorAssignment?:string;
-  descriptionAssignment?:string;
   dateDeRendu?:Date;
-  noteAssignment?:number;
-  coefAssignment?:number; 
+  authorAssignment?:string;
+  noteAssignment?:string;
+  descriptionAssignment?:string;
+  coefAssignment?:number;
+  rendu?:boolean;
 
   //Sauv des données par default
   previousName?:string;
+  previousmatiereAssignment?:string;
   previousDate?:Date;
+  previousNote?:number;
   previousDescription?:string;
-  previsousNote?:number;
   previousCoef?:number;
+  previousrenduAssignment?:boolean;
+
+  firstValue = new FormControl(this.matiereAssignment);
 
   constructor(private route:ActivatedRoute,
               private router:Router,
@@ -55,21 +61,28 @@ export class EditAssignmentComponent implements OnInit {
       this.nomAssignment = assignment?.nom;
       this.dateDeRendu = assignment?.dateDeRendu;
       this.authorAssignment = assignment?.auteur; 
-      this.matiereAssignment= assignment?.matiere; 
+      this.matiereAssignment= assignment?.matiere;
+      this.rendu = assignment?.rendu;
 
       // Sauvegardes les précedence données 
       this.previousName = assignment?.nom;
       this.previousDate = assignment?.dateDeRendu;
-      //TODO A changer par description 
       this.previousDescription = assignment?.remarques;
-      this.previsousNote = assignment?.note;
-      //TODO A changer par coef 
-      this.previousCoef = assignment?.note;
+      this.previousNote = assignment?.note;
+      this.previousCoef = assignment?.coefficient;
+      this.previousmatiereAssignment = assignment?.matiere;
+      this.previousrenduAssignment = assignment?.rendu;
 
-    
-
-
-    })
+      this.nomAssignment = this.previousName;
+      this.descriptionAssignment = this.previousDescription;
+      if(this.previousNote==-1) {
+        this.noteAssignment = "";
+      } else {
+        this.noteAssignment = this.previousNote!.toString();
+      }
+      this.matiereAssignment = this.previousmatiereAssignment;
+      this.coefAssignment = this.previousCoef;
+    });
   }
 
   onSaveAssignment() {
@@ -82,6 +95,23 @@ export class EditAssignmentComponent implements OnInit {
     if (this.dateDeRendu) {
       this.assignment.dateDeRendu = this.dateDeRendu;
     }
+
+    if (this.noteAssignment) {
+      this.assignment.note = parseInt(this.noteAssignment);
+    }
+
+    if (this.matiereAssignment) {
+      this.assignment.matiere = this.matiereAssignment;
+    }
+
+    if (this.coefAssignment) {
+      this.assignment.coefficient = this.coefAssignment;
+    }
+
+    /*if (this.rendu) {
+      this.assignment.rendu = this.rendu;
+    }*/
+
     this.assignmentService
       .updateAssignment(this.assignment)
       .subscribe((reponse) => {
@@ -93,15 +123,45 @@ export class EditAssignmentComponent implements OnInit {
 
   }
 
-  resetForm(){
-    this.nomAssignment = this.previousName; 
-    this.descriptionAssignment = '';
-    this.noteAssignment = 0;
-    this.coefAssignment = 0;
+  changeRendu(){
+    this.assignment!.rendu = !this.rendu;
+    console.log("rendu="+this.assignment!.rendu);
   }
 
-  getTeacher(): void {
+  resetForm(){
+    this.nomAssignment = this.previousName; 
+    this.descriptionAssignment = this.previousDescription;
+    this.noteAssignment = this.previousNote!.toString();
+    this.matiereAssignment = this.previousmatiereAssignment;
+    this.coefAssignment = this.previousCoef;
+    this.rendu=this.previousrenduAssignment;
+  }
+
+  setMatiere(choix:Number): void {
     
+    switch(choix) {
+      case 0: {
+        this.matiereAssignment="Dev Web";
+        break;
+      }
+      case 1: {
+        this.matiereAssignment="Gestion de projet";
+        break;
+      }
+      case 2: {
+        this.matiereAssignment="Création d'entreprise";
+        break;
+      }
+      case 3: {
+        this.matiereAssignment="Management du numérique";
+        break;
+      }
+      default: {
+        this.matiereAssignment="BD pour le Big Data";
+        break;
+      }
+    }
+
     console.log('Matiere ' + this.matiereAssignment + ' séléctionée')
 
   }
