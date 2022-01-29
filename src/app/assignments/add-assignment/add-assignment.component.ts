@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
+import { AuthService } from 'src/app/shared/auth.service';
 import { Assignment } from '../assignment.model';
 
 @Component({
@@ -22,7 +23,8 @@ export class AddAssignmentComponent implements OnInit {
   coefAssignment?:number; 
 
   constructor(private assignmentService:AssignmentsService,
-    private router:Router) { }
+              private router:Router,
+              public authService:AuthService) { }
 
   ngOnInit(): void {
   }
@@ -33,14 +35,12 @@ export class AddAssignmentComponent implements OnInit {
 
     const newAssignment = new Assignment();
     newAssignment.id = Math.round(Math.random()*100000);
-    newAssignment.nom = "(Non renseigné)";
+    var cestOK=false;
     if(this.nomAssignment) {
       newAssignment.nom = this.nomAssignment!;
+      cestOK=true;
     }
-    newAssignment.auteur = "Anonymous";
-    if(this.authorAssignment) {
-      newAssignment.auteur = this.authorAssignment!;
-    }
+    newAssignment.auteur = this.authService.currentUser;
     newAssignment.matiere = "Dev Web";
     if(this.matiereAssignment) {
       newAssignment.matiere = this.matiereAssignment!;
@@ -51,9 +51,9 @@ export class AddAssignmentComponent implements OnInit {
     var fullYear = todayDate.getFullYear();
     const prepareDateParDefaut = () => {
       var nombreAAjouterPourQueMoisOK = 3;
-      if(!(todayDate.getDate()>28)) {
+      if(!(todayDate.getDate()+3>28)) {
         nombreAAjouterPourQueMoisOK--;
-        jourDeRenduParDefaut=todayDate.getDay();
+        jourDeRenduParDefaut=todayDate.getDay()+3;
       }
       if(!(todayDate.getMonth()+nombreAAjouterPourQueMoisOK>12)) {
         nombreAAjouterPourQueMoisOK--;
@@ -84,13 +84,14 @@ export class AddAssignmentComponent implements OnInit {
     }
     //seul le professeur peut attribuer une note et ce lors de l'édition de l'assignment
     newAssignment.note = -1;
-
-    this.assignmentService.addAssignment(newAssignment)
-    .subscribe(reponse => {
-      console.log(reponse.message);
-      // maintenant il faut qu'on affiche la liste !!!
-      this.router.navigate(["/home"]);
-    });
+    if(cestOK) {
+      this.assignmentService.addAssignment(newAssignment)
+      .subscribe(reponse => {
+        console.log(reponse.message);
+        // maintenant il faut qu'on affiche la liste !!!
+        this.router.navigate(["/home"]);
+      });
+    }
   }
 
 

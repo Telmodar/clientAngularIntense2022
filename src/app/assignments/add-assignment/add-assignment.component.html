@@ -4,16 +4,10 @@
       assignmentForm.reset();">
 
   <mat-form-field>
-    <input matInput [(ngModel)]="nomAssignment" name="nom" placeholder="Nom du devoir">
-  </mat-form-field>
-
-  <!-- to do (si on a le temps) prendre directement l'username de compte connecté -->
-  <mat-form-field>
-    <input matInput [(ngModel)]="authorAssignment" name="auteur" placeholder="Indiquez votre nom">
+    <input required matInput [(ngModel)]="nomAssignment" name="nom" placeholder="Nom du devoir">
   </mat-form-field>
 
  <!-- MATIERE -->
-
  <mat-form-field appearance="fill">
    <mat-label>Choix de la matière</mat-label>
    <mat-select>
@@ -48,28 +42,14 @@
    >
  </mat-form-field>
 
- <!-- DESCRIPTION DU RENDU -->
+ <!-- REMARQUES DU RENDU -->
  <mat-form-field appearance="fill">
-   <mat-label>Description</mat-label>
+   <mat-label>Remarques</mat-label>
    <input matInput 
    placeholder="Ex. Analyse des chiffres et ajouts de tous les chiffrages"
-   [(ngModel)]="remarquesAssignment" name="assignment-description"
+   [(ngModel)]="remarquesAssignment" name="assignment-remarques"
    >
  </mat-form-field>
-
-
- <!-- NOTE DU RENDU -->
- <!-- TODO : Vérification si identifier en tant que prof -->
- <!--<mat-form-field appearance="fill">
-   <mat-label>Note sur /20</mat-label>
-   <input matInput 
-   (keypress)="NumbersOnly($event)"
-   min="0" 
-   max="20" 
-   placeholder="Ex. 13.5"
-   [(ngModel)]="noteAssignment" name="assignment-note"
-   >
- </mat-form-field>-->
 
  <button 
  mat-stroked-button 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AssignmentsService } from 'src/app/shared/assignments.service';
+import { AuthService } from 'src/app/shared/auth.service';
 import { Assignment } from '../assignment.model';
 
 
@@ -35,7 +36,8 @@ export class EditAssignmentComponent implements OnInit {
 
   constructor(private route:ActivatedRoute,
               private router:Router,
-              private assignmentService:AssignmentsService) { }
+              private assignmentService:AssignmentsService,
+              public authService:AuthService) { }
 
   ngOnInit(): void {
     // exemple de récupération de "query params" et "fragment"

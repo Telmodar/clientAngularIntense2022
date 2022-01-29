@@ -8,16 +8,23 @@
 
 <mat-toolbar>
         <div class="topBar">
-          
-          <a routerLink="/add">
               <button 
-              mat-flat-button 
+              *ngIf="!authService.loggedIn"
+              mat-flat-button
+              disabled 
               color="accent"
+              routerLink="/add"
               >
               Ajouter Assignment
             </button>
-
-        </a>
+            <button 
+            *ngIf="authService.loggedIn"
+            mat-flat-button 
+            color="accent"
+            routerLink="/add"
+            >
+            Ajouter Assignment
+          </button>
             <button *ngIf="authService.loggedIn" 
         mat-raised-button 
         color="warn"

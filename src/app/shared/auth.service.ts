@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 export class AuthService {
   loggedIn = false;
   users:UserDeLApp[] = usersList;
+  currentUser="";
+  godModeEnable=false;
 
   logIn(username: string, password: string) {
     this.loggedIn = false;
@@ -17,6 +19,8 @@ export class AuthService {
         this.loggedIn = true;
         this.router.navigate(['/home']);
         console.log("Je n'étais pas connecté, je suis maintenant loggé");
+        this.currentUser=username;
+        this.godModeEnable=user.admin;
       }
     });
     return this.loggedIn;
@@ -29,13 +33,15 @@ export class AuthService {
     // soit via oAuth, etc.
 
     // Nous pour le moment, on simule...
+    this.currentUser = "GOD"
     this.loggedIn = true;
   }
 
   logOut() {
     // appelée typiquement par le bouton de deconnexion
-
+    this.currentUser="";
     this.loggedIn = false;
+    this.godModeEnable=false;
   }
 
   isAdmin() {

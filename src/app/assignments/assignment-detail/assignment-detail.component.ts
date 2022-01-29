@@ -18,18 +18,33 @@ export class AssignmentDetailComponent implements OnInit {
   imageMatiere?:String;
   rendu?:String;  
   imageRendu?:String;
+  
+  todayDate = new Date();
+  jourDeRenduParDefaut = 1;
+  moisDuRenduParDefaut = 1;
+  fullYear = this.todayDate.getFullYear();
+  prepareDateParDefaut = () => {
+    var nombreAAjouterPourQueMoisOK = 3;
+    if(!(this.todayDate.getDate()>28)) {
+      nombreAAjouterPourQueMoisOK--;
+      this.jourDeRenduParDefaut=this.todayDate.getDay();
+    }
+    if(!(this.todayDate.getMonth()+nombreAAjouterPourQueMoisOK>12)) {
+      nombreAAjouterPourQueMoisOK--;
+      this.fullYear--;
+      this.moisDuRenduParDefaut=this.todayDate.getMonth()+nombreAAjouterPourQueMoisOK;
+    }
+  }
 
 
   constructor(private assignmentService:AssignmentsService,
               private route:ActivatedRoute,
               private router:Router,
-              private authService:AuthService) { }
+              public authService:AuthService) { }
 
   ngOnInit(): void {
     console.log("DANS COMPOSANT DETAIL")
     this.getAssignment();
-
-
   }
 
   getAssignment() {
@@ -55,8 +70,8 @@ export class AssignmentDetailComponent implements OnInit {
       this.assignmentService.updateAssignment(this.assignmentTransmis)
       .subscribe(reponse => {
         console.log(reponse.message);
-        // on est dans le subscribe, on est sur que la base de données a été
-        // mise à jour....
+        this.prepareDateParDefaut();
+        var dateDeRendu = new Date(this.moisDuRenduParDefaut+"/"+this.jourDeRenduParDefaut+"/"+this.fullYear);
         this.router.navigate(["/home"]);
       })
       // PAS BON SI ICI car on n'a pas la garantie que les données ont été updatées

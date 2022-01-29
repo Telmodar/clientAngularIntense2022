@@ -15,20 +15,15 @@
       
       <div>
       <!-- Si la note est = truc alors afficher-->
-      <mat-card-title *ngIf="assignmentTransmis.note" >Note : {{assignmentTransmis.note}} /20 </mat-card-title>
+      <mat-card-title *ngIf="assignmentTransmis.note!=-1">Note : {{assignmentTransmis.note}}/20 </mat-card-title>
+      <mat-card-title *ngIf="assignmentTransmis.note==-1">Pas encore noté.</mat-card-title>
+      <!-- Sinon afficher pas encore noté -->
 
-      <!-- Si non rendu et date dépasée alors 0/20 -->
-      <mat-card-title *ngIf="!assignmentTransmis.note && assignmentTransmis.dateDeRendu" > Rendu en retard 0/20 </mat-card-title>
+      <!-- Si non rendu et date dépasée alors 0/20 : à finir -->
+      <!-- <mat-card-title *ngIf="!assignmentTransmis.note && assignmentTransmis.dateDeRendu" > Rendu en retard 0/20 </mat-card-title>-->
 
-      <mat-card-title *ngIf="!assignmentTransmis.note" > Pas encore noté </mat-card-title>
-
-      <!-- Sinon afficher pas encore noté-->
     </div>
     </mat-card-header>
-
-    
-    
-
   
     <mat-card-header> 
       <div mat-card-sm-image style="background-image: url('{{imageMatiere}}');"> </div>
@@ -41,7 +36,7 @@
 
   <mat-divider></mat-divider>
   <div class="bottom">
-    <mat-checkbox *ngIf="!assignmentTransmis.rendu" (click)="onAssignmentRendu()">
+    <mat-checkbox *ngIf="!assignmentTransmis.rendu && authService.godModeEnable" (click)="onAssignmentRendu()">
       Rendu
     </mat-checkbox>
 
@@ -89,9 +84,12 @@
   </mat-card-content>
 
 
-    <button mat-raised-button color="accent" (click)="onDeleteAssignment()">
-      DELETE
-    </button>
+  <button *ngIf="!authService.godModeEnable" disabled mat-raised-button>
+    DELETE
+  </button>
+  <button *ngIf="authService.godModeEnable" mat-raised-button color="accent" (click)="onDeleteAssignment()">
+    DELETE
+  </button>
   </div>
 </mat-card>
 
