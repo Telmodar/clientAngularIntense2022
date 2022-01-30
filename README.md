@@ -17,7 +17,7 @@ Mais pour avoir des données, il faut aussi démarrer notre api, pour cela il fa
 Nous avons ajouté une liste écrite en dure d’objet de type user. On a mis comme attribut l’username, le password et enfin un booléen indiquant si c’est un admin.
 
 ### Modification de du model assignment
-Nous avons changé le model assignment en y ajoutant de nouveaux attributs : auteur, matiere, note et remarques. L’auteur est égal à l’username de l’utilisateur qui l’a ajouté. On a modifié cela dans les deux parties de l'application : partie client et partie API.
+Nous avons changé (dans la partie client et la partie API) le model assignment en y ajoutant de nouveaux attributs : auteur, matiere, note et remarques. L’auteur est égal à l’username de l’utilisateur qui l’a ajouté.
 
 ### Amélioration de l’affichage d’assignments
 - Affichage dans une table angular material : avec liste triable par page avec ligne des headers fixe (qui ne scrolle pas) et avec pagination
