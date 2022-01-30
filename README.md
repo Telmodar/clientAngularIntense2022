@@ -7,7 +7,7 @@
 --> allez à l’url suivante : https://client-projetangular-sant-guib.herokuapp.com/
 
 ### En mode test (compiler chez soi)
---> il faut lancer les commandes `npm install` puis `ng serve`
+--> il faut lancer les commandes `npm install` puis `ng serve` puis aller sur http://localhost:4200/home.
 Mais pour avoir des données, il faut aussi démarrer notre api, pour cela il faut aller dans l'autre repos git et suivre les instructions du README.md : https://github.com/Telmodar/ApiAngularIntense2022
 
 
