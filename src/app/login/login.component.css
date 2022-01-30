@@ -14,3 +14,15 @@
     color: white;
     background-color: rgb(57, 35, 255);
 }
+
+#loginInput {
+    color: var(--text-color);
+    background-color: var(--bkg-color);
+
+}
+
+.placeholder {
+    color: var(--text-color);
+    background-color: var(--bkg-color);
+
+}

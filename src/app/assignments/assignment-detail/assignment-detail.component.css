@@ -44,9 +44,8 @@
   display:flex;
   justify-content: space-between;
   align-items: flex-end;
+ 
 }
-
-
 
 .remarque{
   display:flex;
@@ -56,11 +55,25 @@
 
 .imageRendu{
   width : 70px;
-  align:right;   
+  align-content:right;   
 }
 
 .botButtons {
   display:flex;
   justify-content: space-between;
   align-items: flex-end;
+
+}
+
+mat-card-subtitle {
+  background-color: var(--bkg-color);
+  color: var(--text-color);
+
+}
+
+
+
+#loginButton {
+  background-color: var(--dis-btn-color);
+ 
 }

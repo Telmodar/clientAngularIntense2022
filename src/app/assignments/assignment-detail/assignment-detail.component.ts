@@ -22,7 +22,6 @@ export class AssignmentDetailComponent implements OnInit {
   dateRendu?:Date; 
   retard?:Boolean;
 
-
   constructor(private assignmentService:AssignmentsService,
               private route:ActivatedRoute,
               private router:Router,

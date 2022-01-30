@@ -15,7 +15,7 @@
 
       <div>
         <!-- Si la note est = truc alors afficher-->
-        <mat-card-title *ngIf="assignmentTransmis.note"> Note : {{assignmentTransmis.note}} /20 </mat-card-title>
+        <mat-card-title *ngIf="assignmentTransmis.note && assignmentTransmis.note != -1 "> Note : {{assignmentTransmis.note}} /20 </mat-card-title>
 
         <!-- Si non rendu et date dépasée alors 0/20 -->
         <mat-card-title *ngIf="!assignmentTransmis.note && this.retard "> Rendu en retard 0/20
@@ -24,7 +24,7 @@
 
 
 
-        <mat-card-title *ngIf="!assignmentTransmis.note"> Pas encore noté </mat-card-title>
+        <mat-card-title *ngIf="assignmentTransmis.note == -1 "> Pas encore noté </mat-card-title>
 
 
         <!-- Sinon afficher pas encore noté-->
@@ -66,12 +66,8 @@
           -->
 
         <div class="remarque">
-          <div>
-            <h2>Remarques</h2>
-            <p>{{assignmentTransmis.remarques}}</p>
+          
 
-
-          </div>
           <div>
             <mat-card>
               <mat-card-header>
@@ -83,6 +79,11 @@
           </div>
 
           <div>
+            <h2>Remarques</h2>
+            <p>{{assignmentTransmis.remarques}}</p>
+          </div>
+
+          <div>
             <h3 *ngIf="!assignmentTransmis.rendu">Status : A rendre</h3>
             <h3 *ngIf="assignmentTransmis.rendu">Status : Rendu</h3>
             <img class="imageRendu" src="{{imageRendu}}">
@@ -91,8 +92,7 @@
         </div>
 
 
-
-        <div class="description">
+        <div>
           <h2>Description</h2>
           <p>L'assignement {{assignmentTransmis.nom}} doit être rendu au plus tard le
             {{assignmentTransmis.dateDeRendu | date: 'dd/M/yyyy' }} à {{responsableMatiere}}.
@@ -101,11 +101,11 @@
 
 
         <div class="botButtons">
-          <button [disabled]="!isAdmin()" mat-stroked-button color="primary" (click)="onClickEdit()">
+          <button id="loginButton" [disabled]="!isAdmin()" mat-stroked-button color="primary" (click)="onClickEdit()">
             EDIT
           </button>
 
-          <button *ngIf="!authService.godModeEnable" disabled mat-raised-button>
+          <button id="loginButton" *ngIf="!authService.godModeEnable" disabled  mat-raised-button>
             DELETE
           </button>
           <button *ngIf="authService.godModeEnable" mat-raised-button color="accent" (click)="onDeleteAssignment()">

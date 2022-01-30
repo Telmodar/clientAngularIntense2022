@@ -33,9 +33,16 @@
   align-items: flex-end;
 }
 
-table {
+table , mat-paginator {
   width: 100%;
+  background-color: var(--bkg-color);
+  color: var(--text-color);
 }
+th, td,  ng-container {
+  color: var(--text-color);
+}
+
+
 
 thead tr {
   display: table;

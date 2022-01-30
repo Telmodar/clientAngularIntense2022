@@ -8,10 +8,12 @@ body { margin: 30; font-family: Roboto, "Helvetica Neue", sans-serif; }
 body {
     --text-color: #222;
     --bkg-color: #fff;
+    --btn-color: #ebebeb; 
   }
   body.dark-mode {
     --text-color: #eee;
     --bkg-color: #252222;
+    --dis-btn-color: #818181; 
   }
   
   body {
@@ -21,3 +23,11 @@ body {
   h1, h2, h3, h4, p {
     color: var(--text-color);
   }
+
+  .mat-card, .mat-card-subtitle, mat-label, .input, .mat-form-field {
+    background-color: var(--bkg-color);
+    color: var(--text-color);
+  
+  }
+
+
