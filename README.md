@@ -3,7 +3,7 @@
 ## Comment s’en servir ? 
 
 ### En mode normal
---> allez à l’url suivante : urlheroku
+--> allez à l’url suivante : https://client-projetangular-sant-guib.herokuapp.com/
 
 ### En mode test (compiler chez soi)
 --> il faut lancer les commandes `npm install` puis `ng serve`
