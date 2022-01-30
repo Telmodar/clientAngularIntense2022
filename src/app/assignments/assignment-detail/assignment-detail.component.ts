@@ -18,6 +18,9 @@ export class AssignmentDetailComponent implements OnInit {
   imageMatiere?:String;
   rendu?:String;  
   imageRendu?:String;
+  dateNow?:Date; 
+  dateRendu?:Date; 
+  retard?:Boolean;
 
 
   constructor(private assignmentService:AssignmentsService,
@@ -45,6 +48,12 @@ export class AssignmentDetailComponent implements OnInit {
       this.assignmentTransmis = assignment;
       this.getRendu();
       this.getResponsable();
+      this.dateNow = new Date();
+      this.dateRendu = this.assignmentTransmis?.dateDeRendu
+      this.retard = this.getRetard()
+      console.log("date de rendu = " + this.dateRendu)
+      console.log("Date d'auj" + this.dateNow)
+      console.log("Le devoir est il en retard ? " + this.retard)
     })
 
   }
@@ -164,4 +173,24 @@ getRendu(){
  }
  
 }
+
+getRetard(){
+var retard 
+
+  if (this.dateNow! < this.dateRendu!) {
+    console.log("En retard")
+    retard = true
+
+
+}
+else {
+  console.log("Good ")
+  retard = false
+}
+
+return retard
+}
+
+ 
+ 
 };

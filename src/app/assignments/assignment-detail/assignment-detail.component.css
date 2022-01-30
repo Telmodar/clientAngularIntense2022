@@ -46,7 +46,9 @@
   align-items: flex-end;
 }
 
-.description{
+
+
+.remarque{
   display:flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -55,4 +57,10 @@
 .imageRendu{
   width : 70px;
   align:right;   
+}
+
+.botButtons {
+  display:flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
