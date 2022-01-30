@@ -21,14 +21,13 @@ Nous avons changé le model assignment en y ajoutant de nouveaux attributs : aut
 
 ### Amélioration de l’affichage d’assignments
 - Affichage dans une table angular material : avec liste triable par page avec ligne des headers fixe (qui ne scrolle pas) et avec pagination
-- Amélioration de la page de détail d’un assignment : affichage de la matière, image de la matière, photo du professeur, assignment non rendu en retard, …
-Info : pour l’indication du rendu en retard on a fait cela avec des comparaisons de date (date du jour / date de rendu de l’assignment).
+- Amélioration de la page de détail d’un assignment : affichage de la matière, professeur de la matière, image de la matière, photo du professeur, remarques, …
 
 ### Blocage de fonctionnalité si l’user n’est pas un admin
 Certaines fonctionnalités sont bloquées pour les utilisateurs qui ne le sont pas :
 - La suppression d’un assignment
-- L’édition de note
-- Indiquer que le projet et rendu
+- L'ajout et l’édition de la note
+- Indiquer que le projet est rendu
 
 ### Ajout d’un dark mode
 
