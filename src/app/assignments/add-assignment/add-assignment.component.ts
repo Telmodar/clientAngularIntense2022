@@ -80,7 +80,8 @@ export class AddAssignmentComponent implements OnInit {
     newAssignment.rendu = false;
     newAssignment.coefficient = 1;
     if(this.coefAssignment) {
-      newAssignment.coefficient = this.coefAssignment!;
+      newAssignment.coefficient = Math.round(this.coefAssignment!*10)/10;
+      
     }
     //seul le professeur peut attribuer une note et ce lors de l'édition de l'assignment
     newAssignment.note = -1;

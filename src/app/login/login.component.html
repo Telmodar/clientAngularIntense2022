@@ -2,11 +2,13 @@
     <h2>Connectez-vous</h2>
     <form ngForm class="form">
         <mat-form-field>
-            <input matInput placeholder="Nom d'utilisateur" name="username" [(ngModel)]="username">
+            <mat-label>Nom d'utilisateur</mat-label>
+            <input id="loginInput" matInput name="username" [(ngModel)]="username">
         </mat-form-field>
         <br>
         <mat-form-field>
-            <input matInput placeholder="Mot de passe" name="password" [(ngModel)]="password" type='password'>
+            <mat-label>Mot de passe</mat-label>
+            <input matInput name="password" [(ngModel)]="password" type='password'>
         </mat-form-field>
         <p *ngIf="thereIsAnError" style="text-align: center; color: red;">Erreur : nom d'utilisateur et/ou mot de passe incorrect.</p>
         <br>

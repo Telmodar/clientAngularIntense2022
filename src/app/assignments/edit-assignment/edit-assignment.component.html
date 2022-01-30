@@ -51,10 +51,10 @@
 
     <!-- REMARQUES DU RENDU -->
     <mat-form-field appearance="fill">
-      <mat-label>Description</mat-label>
+      <mat-label>Remarque</mat-label>
       <input matInput 
       placeholder="Ex. Analyse des chiffres et ajouts de tous les chiffrages"
-      [(ngModel)]="descriptionAssignment" name="assignment-remarques"
+      [(ngModel)]="remarquesAssignment" name="assignment-remarques"
       >
     </mat-form-field>
 
@@ -65,7 +65,7 @@
     <mat-form-field appearance="fill"
       *ngIf="(!rendu && authService.godModeEnable)">
       <mat-label>Note sur /20</mat-label>
-      <input matInput 
+      <input id="disabledInput" matInput 
       (keypress)="NumbersOnly($event)"
       min="0" 
       max="20" 
@@ -77,7 +77,7 @@
     <mat-form-field appearance="fill"
       *ngIf="rendu || !authService.godModeEnable">
       <mat-label>Note sur /20</mat-label>
-      <input matInput 
+      <input id="disabledInput" matInput 
       (keypress)="NumbersOnly($event)"
       min="0" 
       max="20" 
@@ -88,16 +88,16 @@
       >
     </mat-form-field>
 
-    <mat-checkbox *ngIf="(noteAssignment!='' && !rendu && authService.godModeEnable)" (click)="changeRendu()" [checked]="assignment.rendu">Rendu</mat-checkbox>
+    <mat-checkbox id="disabledCheckbox" *ngIf="(noteAssignment!='' && !rendu && authService.godModeEnable)" (click)="changeRendu()" [checked]="assignment.rendu">Rendu</mat-checkbox>
 
-    <mat-checkbox *ngIf="(noteAssignment=='' || rendu || !authService.godModeEnable)" disabled="true" [checked]="assignment.rendu">Rendu</mat-checkbox>
+    <mat-checkbox id="disabledCheckbox" *ngIf="(noteAssignment=='' || rendu || !authService.godModeEnable)" disabled="true" [checked]="assignment.rendu">Rendu</mat-checkbox>
 
     <button mat-raised-button color="primary"
            (click)="onSaveAssignment()">
       Sauver
     </button>
 
-    <button mat-raised-button color="warn"
+    <button id="loginButton" mat-raised-button color="warn"
     (click)="resetForm()">
     Réinitialiser le formulaire
   </button>

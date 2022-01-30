@@ -19,7 +19,7 @@ export class EditAssignmentComponent implements OnInit {
   dateDeRendu?:Date;
   authorAssignment?:string;
   noteAssignment?:string;
-  descriptionAssignment?:string;
+  remarquesAssignment?:string;
   coefAssignment?:number;
   rendu?:boolean;
 
@@ -28,7 +28,7 @@ export class EditAssignmentComponent implements OnInit {
   previousmatiereAssignment?:string;
   previousDate?:Date;
   previousNote?:number;
-  previousDescription?:string;
+  previousRemarques?:string;
   previousCoef?:number;
   previousrenduAssignment?:boolean;
 
@@ -69,14 +69,14 @@ export class EditAssignmentComponent implements OnInit {
       // Sauvegardes les précedence données 
       this.previousName = assignment?.nom;
       this.previousDate = assignment?.dateDeRendu;
-      this.previousDescription = assignment?.remarques;
+      this.previousRemarques = assignment?.remarques;
       this.previousNote = assignment?.note;
       this.previousCoef = assignment?.coefficient;
       this.previousmatiereAssignment = assignment?.matiere;
       this.previousrenduAssignment = assignment?.rendu;
 
       this.nomAssignment = this.previousName;
-      this.descriptionAssignment = this.previousDescription;
+      this.remarquesAssignment = this.previousRemarques;
       if(this.previousNote==-1) {
         this.noteAssignment = "";
       } else {
@@ -99,7 +99,7 @@ export class EditAssignmentComponent implements OnInit {
     }
 
     if (this.noteAssignment) {
-      this.assignment.note = parseInt(this.noteAssignment);
+      this.assignment.note = Math.round(parseFloat(this.noteAssignment)*100)/100;
     }
 
     if (this.matiereAssignment) {
@@ -107,7 +107,11 @@ export class EditAssignmentComponent implements OnInit {
     }
 
     if (this.coefAssignment) {
-      this.assignment.coefficient = this.coefAssignment;
+      this.assignment.coefficient = Math.round(this.coefAssignment*10)/10;
+    }
+
+    if (this.remarquesAssignment) {
+      this.assignment.remarques = this.remarquesAssignment;
     }
 
     /*if (this.rendu) {
@@ -132,7 +136,7 @@ export class EditAssignmentComponent implements OnInit {
 
   resetForm(){
     this.nomAssignment = this.previousName; 
-    this.descriptionAssignment = this.previousDescription;
+    this.remarquesAssignment = this.previousRemarques;
     this.noteAssignment = this.previousNote!.toString();
     this.matiereAssignment = this.previousmatiereAssignment;
     this.coefAssignment = this.previousCoef;

@@ -3,3 +3,22 @@
   flex-direction: column;
   margin:5px;
 }
+
+.input{
+  background-color: var(--bkg-color);
+  color: var(--text-color);
+
+
+}
+
+#disabledInput {
+ background-color: var(--bkg-color);
+  color: var(--text-color);
+
+}
+
+#disabledCheckbox {
+  background-color: var(--bkg-color);
+   color: var(--text-color);
+ 
+ }
