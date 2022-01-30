@@ -71,10 +71,8 @@ export class AssignmentsComponent implements OnInit {
 
    affichageRendusEtNonRendus(rendus: boolean) {
      if (rendus) {
-      console.log("filtre rendus modifié");
       this.afficherRendus=!this.afficherRendus;
      } else {
-      console.log("filtre non rendus modifié");
       this.afficherNonRendus=!this.afficherNonRendus;
      }
      this.getAssignments();

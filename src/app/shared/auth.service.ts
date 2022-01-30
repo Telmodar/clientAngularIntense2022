@@ -18,7 +18,6 @@ export class AuthService {
       if (user.username==username && user.password==password) {
         this.loggedIn = true;
         this.router.navigate(['/home']);
-        console.log("Je n'étais pas connecté, je suis maintenant loggé");
         this.currentUser=username;
         this.godModeEnable=user.admin;
       }

@@ -32,12 +32,10 @@ export class AppComponent {
 
   oldLoginFunction() {
     if (!this.authService.loggedIn) {
-      console.log("Je n'étais pas connecté, je suis maintenant loggé");
       this.authService.oldLogInFunction();
       this.loginButtonColor = "warn";
       this.loggedInUIState = !this.loggedInUIState;
     } else {
-      console.log("J'étais  connecté, je suis maintenant déloggé");
       this.authService.logOut();
       this.loginButtonColor = "primary";
       //this.router.navigate(['/home']);
@@ -46,7 +44,6 @@ export class AppComponent {
   }
 
   logout() {
-    console.log("J'étais  connecté, je suis maintenant déloggé");
     this.authService.logOut();
     this.loginButtonColor = "primary";
     this.loggedInUIState = !this.loggedInUIState;

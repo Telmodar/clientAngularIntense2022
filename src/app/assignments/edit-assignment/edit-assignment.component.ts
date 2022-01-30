@@ -42,9 +42,7 @@ export class EditAssignmentComponent implements OnInit {
   ngOnInit(): void {
     // exemple de récupération de "query params" et "fragment"
     // exemple d'URL : /assignment/1/edit?nom=Buffa&prenom=Michel#edit
-    console.log("QUERY PARAMS : ");
     console.log(this.route.snapshot.queryParams);
-    console.log("FRAGMENT : ");
     console.log(this.route.snapshot.fragment);
 
     this.getAssignment();
@@ -141,6 +139,8 @@ export class EditAssignmentComponent implements OnInit {
     this.matiereAssignment = this.previousmatiereAssignment;
     this.coefAssignment = this.previousCoef;
     this.rendu=this.previousrenduAssignment;
+    this.dateDeRendu=this.previousDate;
+
   }
 
   setMatiere(choix:Number): void {

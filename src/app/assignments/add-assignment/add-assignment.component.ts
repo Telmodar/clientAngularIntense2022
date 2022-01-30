@@ -64,7 +64,6 @@ export class AddAssignmentComponent implements OnInit {
     }
     prepareDateParDefaut();
     newAssignment.dateDeRendu = new Date(moisDuRenduParDefaut+"/"+jourDeRenduParDefaut+"/"+fullYear);
-    console.log("date de rendu : "+newAssignment.dateDeRendu);
     if(this.dateDeRendu) {
       try {
         newAssignment.dateDeRendu = new Date(this.dateDeRendu);
