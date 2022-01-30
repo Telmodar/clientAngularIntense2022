@@ -9,11 +9,14 @@ body {
     --text-color: #222;
     --bkg-color: #fff;
     --btn-color: #ebebeb; 
+    --header-row: #cacaca;
   }
   body.dark-mode {
     --text-color: #eee;
     --bkg-color: #252222;
+    --btn-table-color: #5e1414;
     --dis-btn-color: #818181; 
+    --header-row: #01645f;
   }
   
   body {

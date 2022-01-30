@@ -71,9 +71,23 @@ mat-card-subtitle {
 
 }
 
+#DeleteButton {
+  background-color: #f1620f; 
+}
 
-
-#loginButton {
+#DeleteButtonDisabled {
   background-color: var(--dis-btn-color);
  
+}
+
+
+#editButtonEnabled {
+  background-color: var(--btn-table-color);
+  color: var(--text-color);
+
+}
+
+#editButtonDisabled{
+  background-color: var(--dis-btn-color);
+
 }

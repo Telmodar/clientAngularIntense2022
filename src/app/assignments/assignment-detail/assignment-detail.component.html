@@ -101,14 +101,20 @@
 
 
         <div class="botButtons">
-          <button id="loginButton" [disabled]="!isAdmin()" mat-stroked-button color="primary" (click)="onClickEdit()">
+         
+          <button id="editButtonDisabled" *ngIf="!isAdmin()" mat-stroked-button disabled color="primary" (click)="onClickEdit()">
             EDIT
           </button>
 
-          <button id="loginButton" *ngIf="!authService.godModeEnable" disabled  mat-raised-button>
+          <button id="editButtonEnabled" *ngIf="isAdmin()" mat-stroked-button color="primary" (click)="onClickEdit()">
+            EDIT
+          </button>
+
+          <button id="DeleteButtonDisabled" *ngIf="!authService.godModeEnable" disabled mat-raised-button>
             DELETE
           </button>
-          <button *ngIf="authService.godModeEnable" mat-raised-button color="accent" (click)="onDeleteAssignment()">
+
+          <button id="DeleteButton" *ngIf="authService.godModeEnable" mat-raised-button color="accent" (click)="onDeleteAssignment()">
             DELETE
           </button>
 

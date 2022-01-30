@@ -50,3 +50,19 @@ thead tr {
   table-layout: fixed;
 }
 
+.mat-paginator-sticky {
+  bottom: 0px;
+  position: sticky;
+  z-index: 10;
+}
+
+.mat-header-row{
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--header-row);
+  }
+
+  button {
+    background-color: var(--btn-table-color);
+  }
