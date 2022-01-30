@@ -1,59 +1,44 @@
-<h1>
-  <nav>
-    <a routerLink="/home">
-      <img src="https://zupimages.net/up/22/04/qjde.png">
-    </a>
-  </nav>
-</h1>
+<nav>
+        <a routerLink="/home">
+                <img src="https://zupimages.net/up/22/04/qjde.png">
+        </a>
+</nav>
 
-<mat-toolbar>
+
+<mat-toolbar color="primary">
         <div class="topBar">
-              <button 
-              *ngIf="!authService.loggedIn"
-              mat-flat-button
-              disabled 
-              color="accent"
-              routerLink="/add"
-              >
-              Ajouter Assignment
-            </button>
-            <button 
-            *ngIf="authService.loggedIn"
-            mat-flat-button 
-            color="accent"
-            routerLink="/add"
-            >
-            Ajouter Assignment
-          </button>
-            <button *ngIf="authService.loggedIn" 
-        mat-raised-button 
-        color="warn"
-        (click)="logout()"
->
-        Logout
-</button>
-<button *ngIf="!authService.loggedIn"
-        mat-raised-button
-        color="primary"
-        routerLink="/login"
->
-        Login
-</button>
-    
-
-<button mat-raised-button 
-        color="accent" 
-        (click)="oldLoginFunction()"
->
-        Login (old button)
-</button>
+                <mat-toolbar-row>
+                        <button *ngIf="authService.loggedIn" mat-raised-button color="warn" (click)="logout()">
+                                Logout
+                        </button>
+                        <button *ngIf="!authService.loggedIn" mat-raised-button routerLink="/login">
+                                Login
+                        </button>
 
 
-<mat-slide-toggle (click)="toggleDarkMode()">Dark Mode</mat-slide-toggle>
-    
+                        <button mat-raised-button color="accent" (click)="oldLoginFunction()">
+                                Login (old button)
+                        </button>
+                </mat-toolbar-row>
+
+
+                <mat-toolbar-row>
+                        <mat-slide-toggle (click)="toggleDarkMode()">Dark Mode</mat-slide-toggle>
+                </mat-toolbar-row>
+
+                <mat-toolbar-row>
+
+                        <button *ngIf="!authService.loggedIn" mat-flat-button disabled color="accent" routerLink="/add">
+                                Ajouter Assignment
+                        </button>
+                        <button *ngIf="authService.loggedIn" mat-flat-button color="accent" routerLink="/add">
+                                Ajouter Assignment
+                        </button>
+
+                </mat-toolbar-row>
         </div>
-    
-      </mat-toolbar>
+
+</mat-toolbar>
 
 
 

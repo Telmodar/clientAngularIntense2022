@@ -1,7 +1,7 @@
 <mat-card *ngIf="assignmentTransmis">
 
   <div class="assigment-card-header">
-    <mat-card-header> 
+    <mat-card-header>
       <div mat-card-avatar style="background-image: url('{{photoResponsable}}');"> </div>
       <!--Nom de l'élève-->
       <mat-card-title>{{responsableMatiere}}</mat-card-title>
@@ -10,22 +10,32 @@
       <mat-card-subtitle>{{titreResponsable}} </mat-card-subtitle>
     </mat-card-header>
 
-    
+
     <mat-card-header>
-      
+
       <div>
-      <!-- Si la note est = truc alors afficher-->
-      <mat-card-title *ngIf="assignmentTransmis.note!=-1">Note : {{assignmentTransmis.note}}/20 </mat-card-title>
-      <mat-card-title *ngIf="assignmentTransmis.note==-1">Pas encore noté.</mat-card-title>
-      <!-- Sinon afficher pas encore noté -->
+        <!-- Si la note est = truc alors afficher-->
+        <mat-card-title *ngIf="assignmentTransmis.note"> Note : {{assignmentTransmis.note}} /20 </mat-card-title>
 
-      <!-- Si non rendu et date dépasée alors 0/20 : à finir -->
-      <!-- <mat-card-title *ngIf="!assignmentTransmis.note && assignmentTransmis.dateDeRendu" > Rendu en retard 0/20 </mat-card-title>-->
+        <!-- Si non rendu et date dépasée alors 0/20 -->
+        <mat-card-title *ngIf="!assignmentTransmis.note && this.retard "> Rendu en retard 0/20
+        </mat-card-title>
 
-    </div>
+
+
+
+        <mat-card-title *ngIf="!assignmentTransmis.note"> Pas encore noté </mat-card-title>
+
+
+        <!-- Sinon afficher pas encore noté-->
+      </div>
     </mat-card-header>
-  
-    <mat-card-header> 
+
+
+
+
+
+    <mat-card-header>
       <div mat-card-sm-image style="background-image: url('{{imageMatiere}}');"> </div>
       <mat-card-title>{{assignmentTransmis.matiere}}</mat-card-title>
       <!--Coef de la matiére-->
@@ -42,90 +52,72 @@
 
     <mat-card-content>
       <pre></pre>
-    <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
-    <mat-card-subtitle>Date de rendu : {{assignmentTransmis.dateDeRendu | date}}</mat-card-subtitle>
+      <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
+      <mat-card-subtitle>Date de rendu : {{assignmentTransmis.dateDeRendu | date}}</mat-card-subtitle>
 
-    <nav>
-      <!-- la route "relative" marche aussi car on est déjà dans /assignment/id
+      <nav>
+        <!-- la route "relative" marche aussi car on est déjà dans /assignment/id
             Le fait de naviguer vers ['edit'] rajoute edit à la fin -->
-      <!--<a [routerLink]="['edit']"> -->
+        <!--<a [routerLink]="['edit']"> -->
 
         <!-- ici exemple avec route absolue (commence par /) -->
         <!--
           <a [routerLink]="['/assignment', assignmentTransmis.id, 'edit']">
           -->
 
-
-          <div class="description"> 
-            <div><h2>Description</h2>
-              <p>L'assignement {{assignmentTransmis.nom}} doit être rendu au plus tard le
-                 {{assignmentTransmis.dateDeRendu | date: 'dd/M/yyyy' }} à {{responsableMatiere}}. 
-                 Le devoir est à déposer sur la boite LMS du cours de {{assignmentTransmis.matiere}}.</p>
-            </div> 
-
-            <div>
-              <h3 *ngIf="!assignmentTransmis.rendu" >Status : A rendre</h3> 
-              <h3 *ngIf="assignmentTransmis.rendu" >Status : Rendu</h3>
-              <img class="imageRendu"  src="{{imageRendu}}"> </div>
-
-  
-          </div> 
-
-          
-          
-        <button [disabled]="!isAdmin()" mat-stroked-button color="primary" (click)="onClickEdit()">
-          EDIT
-        </button>
-        
-        <!--
-      </a>
-    -->
-    </nav>
-  </mat-card-content>
+        <div class="remarque">
+          <div>
+            <h2>Remarques</h2>
+            <p>{{assignmentTransmis.remarques}}</p>
 
 
-  <button *ngIf="!authService.godModeEnable" disabled mat-raised-button>
-    DELETE
-  </button>
-  <button *ngIf="authService.godModeEnable" mat-raised-button color="accent" (click)="onDeleteAssignment()">
-    DELETE
-  </button>
+          </div>
+          <div>
+            <mat-card>
+              <mat-card-header>
+                <div mat-card-sm-image> </div>
+              </mat-card-header>
+              <h3>Créateur : </h3>
+              <mat-card-title>{{assignmentTransmis?.auteur}}</mat-card-title>
+            </mat-card>
+          </div>
+
+          <div>
+            <h3 *ngIf="!assignmentTransmis.rendu">Status : A rendre</h3>
+            <h3 *ngIf="assignmentTransmis.rendu">Status : Rendu</h3>
+            <img class="imageRendu" src="{{imageRendu}}">
+          </div>
+
+        </div>
+
+
+
+        <div class="description">
+          <h2>Description</h2>
+          <p>L'assignement {{assignmentTransmis.nom}} doit être rendu au plus tard le
+            {{assignmentTransmis.dateDeRendu | date: 'dd/M/yyyy' }} à {{responsableMatiere}}.
+            Le devoir est à déposer sur la boite LMS du cours de {{assignmentTransmis.matiere}}.</p>
+        </div>
+
+
+        <div class="botButtons">
+          <button [disabled]="!isAdmin()" mat-stroked-button color="primary" (click)="onClickEdit()">
+            EDIT
+          </button>
+
+          <button *ngIf="!authService.godModeEnable" disabled mat-raised-button>
+            DELETE
+          </button>
+          <button *ngIf="authService.godModeEnable" mat-raised-button color="accent" (click)="onDeleteAssignment()">
+            DELETE
+          </button>
+
+        </div>
+
+      </nav>
+    </mat-card-content>
+
+
+
   </div>
-</mat-card>
-
-
-<h3>Créateur : </h3>
-<mat-card-header>
-<div mat-card-sm-image> </div>
-<mat-card-title>{{assignmentTransmis?.auteur}}</mat-card-title>
-</mat-card-header>
-<!--TODO Mettre la variable de l'utilisateur-->
-
-
-
-<h2>Remarques</h2>
-<!-- Ajouter le nombre de remarques -->
-
-
-<!--Ng for pour les remarques -->
-<mat-card *ngIf="assignmentTransmis">
-
-  <!--Texte de la remarque --> 
-  <p>{{assignmentTransmis.remarques}}</p>
-
-</mat-card>
-
-
-<!-- Ajouter l'envoie du commentaire -->
-<mat-card *ngIf="assignmentTransmis">
-<form class="example-form">
-
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Remarque</mat-label>
-    <textarea matInput placeholder="Ex. Le ficher du compte de resultat n'est pas présent... "></textarea>
-  </mat-form-field>
-</form>
-
-<button mat-raised-button color="primary">Envoyer la nouvelle remarque</button>
-
 </mat-card>
