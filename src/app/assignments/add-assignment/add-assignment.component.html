@@ -3,6 +3,10 @@
       (submit)="onSubmit(); 
       assignmentForm.reset();">
 
+ <!-- ERREUR -->
+  <p *ngIf="thereIsAnError" style="text-align: center; color: red;">Erreur : veuillez indiquer le nom de l'assignment.</p>
+
+ <!-- NOM -->
   <mat-form-field>
     <input required matInput [(ngModel)]="nomAssignment" name="nom" placeholder="Nom du devoir">
   </mat-form-field>

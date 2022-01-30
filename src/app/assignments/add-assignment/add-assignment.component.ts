@@ -20,7 +20,8 @@ export class AddAssignmentComponent implements OnInit {
   remarquesAssignment?:string;
   dateDeRendu!:Date;
   noteAssignment?:number;
-  coefAssignment?:number; 
+  coefAssignment?:number;
+  thereIsAnError=false;
 
   constructor(private assignmentService:AssignmentsService,
               private router:Router,
@@ -90,7 +91,10 @@ export class AddAssignmentComponent implements OnInit {
         console.log(reponse.message);
         // maintenant il faut qu'on affiche la liste !!!
         this.router.navigate(["/home"]);
+        this.thereIsAnError=cestOK;
       });
+    } else {
+      this.thereIsAnError=!cestOK;
     }
   }
 
