@@ -1,31 +1,36 @@
-# AssignmentApp
+# Projet "Angula signement"
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.1.
+## Comment s’en servir ? 
 
-## Development server
+### En mode normal
+--> allez à l’url suivante : urlheroku
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### En mode test (compiler chez soi)
+--> il faut lancer les `npm install` puis `ng serve`
+Mais pour avoir des données, il faut aussi démarrer notre api, pour cela il faut aller dans l'autre repos git et suivre les instructions du REAME.md : https://github.com/Telmodar/ApiAngularIntense2022
 
 
-**To start the back end** 
-ng serve
+## Contribution 
+
+# Ajout du login avec user
+Nous avons ajouté une liste écrite en dure d’objet de type user. On a mis comme attribut l’username, le password et enfin un booléen indiquant si c’est un admin.
+
+# Modification de du model assignment
+Nous avons changé le model assignment en y ajoutant de nouveaux attributs : auteur, matiere, note et remarques. L’auteur est égal à l’username de l’utilisateur qui l’a ajouté. On a modifié cela dans les deux parties de l'application : partie client et partie API.
+
+# Amélioration de l’affichage d’assignments
+- Affichage dans une table angular material : avec liste triable par page avec ligne des headers fixe (qui ne scrolle pas) et avec pagination
+- Amélioration de la page de détail d’un assignment : affichage de la matière, image de la matière, photo du professeur, assignment non rendu en retard, …
+Info : pour l’indication du rendu en retard on a fait cela avec des comparaisons de date (date du jour / date de rendu de l’assignment).
+
+# Blocage de fonctionnalité si l’user n’est pas un admin
+Certaines fonctionnalités sont bloquées pour les utilisateurs qui ne le sont pas :
+- La suppression d’un assignment
+- L’édition de note
+- Indiquer que le projet et rendu
+
+# Ajout d’un dark mode
+
+# Valeur par défaut lors de la création d’un assignment
+- Matière par défaut
+- Date par défaut
