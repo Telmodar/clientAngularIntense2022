@@ -46,7 +46,7 @@
 
   <mat-divider></mat-divider>
   <div class="bottom">
-    <mat-checkbox *ngIf="!assignmentTransmis.rendu && authService.godModeEnable" (click)="onAssignmentRendu()">
+    <mat-checkbox *ngIf="!assignmentTransmis.rendu && authService.godModeEnable && assignmentTransmis.note != -1"(click)="onAssignmentRendu()">
       Rendu
     </mat-checkbox>
 

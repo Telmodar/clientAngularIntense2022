@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
     if (!this.authService.loggedIn) {
       this.thereIsAnError = !this.authService.logIn(this.username,this.password);
       if(this.authService.logIn(this.username,this.password)) {
-        console.log("Oh shit, here we go again..");
       }
     }
   }
